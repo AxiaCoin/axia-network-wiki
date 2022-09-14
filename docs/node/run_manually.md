@@ -46,7 +46,6 @@ git clone https://github.com/AxiaCoin/axia-network-v2.git
 cd axia-network-v2
 ```
 
-Note: This checkouts to the mainnet branch. For the latest stable version, checkout the latest tag.
 
 Build axgo:
 

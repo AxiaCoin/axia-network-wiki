@@ -1,1 +1,6 @@
-# axia-network-wiki
+AXIA Wiki
+```
+
+yarn install
+yarn start
+```

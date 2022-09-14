@@ -52,7 +52,7 @@ module.exports = {
       {
         docs: {
           editUrl: ({ docPath }) =>
-            `https://github.com/AxiaCoin/axia-network-wiki/edit/master/docs/${docPath}`,
+            `https://github.com/AxiaCoin/axia-network-wiki/edit/prod/docs/${docPath}`,
           path: "../docs",
           showLastUpdateAuthor: false,
           showLastUpdateTime: false,
@@ -131,15 +131,15 @@ module.exports = {
           position: "right",
         },*/
 
-      /**
-       * Uncomment following when algolia api key is available
-       *
-       *  {
-       *   type: "search",
-       *   position: "right",
-       * },
-       * 
-       **/
+        /**
+         * Uncomment following when algolia api key is available
+         *
+         *  {
+         *   type: "search",
+         *   position: "right",
+         * },
+         * 
+         **/
         /**
         {
           to: "docs/contributing",

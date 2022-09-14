@@ -42,7 +42,7 @@ Download the axia-network-v2 repository into your  `$GOPATH`:
 cd $GOPATH
 mkdir -p src/github.com/AxiaCoin
 cd src/github.com/AxiaCoin
-git clone https://github.com/AxiaCoin/axia-network-v2.git/tree/prod
+git clone https://github.com/AxiaCoin/axia-network-v2.git
 cd axia-network-v2
 ```
 

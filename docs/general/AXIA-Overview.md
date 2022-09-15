@@ -5,7 +5,7 @@ sidebar_label: AXIA Overview
 slug: ../AXIA-Overview
 ---
 
-## Introducing AXIA  - The hyper-deflationary blockchain network
+## Introducing AXIA  - The Hyper-Deflationary Blockchain Network
 
 AXIA is a next generation network with sound economics designed to foster mass adoption to truly bring the advantages of blockchain technology to the mainstream. 
 

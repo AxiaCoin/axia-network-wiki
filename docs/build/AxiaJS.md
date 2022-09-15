@@ -44,10 +44,6 @@ You can also pull the repo down directly and build it from scratch:
 
 `yarn build`
 
-This will generate a pure Javascript library and place it in a folder named "web" in the project root. The "axia.js" file can then be dropped into any project as a pure javascript implementation of Axia.
-
-The AxiaJS library can be imported into your existing Node.js project as follows:
-
 ```js
 const axia = require("@axiaglobal/axiajs")
 ```

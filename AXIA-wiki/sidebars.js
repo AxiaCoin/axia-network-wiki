@@ -138,7 +138,7 @@ module.exports = {
         //"build/AXIA-Network-RPC",
         //"build/Transaction-Structure",
         //"build/Peer-Node-Setup",
-        "build/Nomination-Process",
+        // "build/Nomination-Process",
         //"build/build-node-management",
         //"learn/learn-implementers-guide",
 
@@ -175,7 +175,8 @@ module.exports = {
             "build/AXChain-API",
             "build/keystore",
             "build/HealthAPI",
-            "build/InfoAPI"
+            "build/InfoAPI",
+            "build/AxiaJS"
             //"build/AXscan-Account-Creation",
             //"build/AXscan-Balance-Transfer",
 

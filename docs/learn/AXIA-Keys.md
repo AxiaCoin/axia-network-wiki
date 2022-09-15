@@ -7,7 +7,7 @@ slug: ../AXIA-Keys
 
 ## AXChain Keys
 
-AXChain keys follow exactly the same scheme as is in EVM including hash function which is Keccak and all the other cryptographic algorithms of EVM. 
+AXChain keys follow exactly the same scheme as is in EVM, including hash function which is Keccak and all the other cryptographic algorithms of EVM. 
 
  Ref.
  

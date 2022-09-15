@@ -23,7 +23,7 @@ This goal is set in motion through the disruptive design of AXIA, which brings a
 * A decentralized network and ecosystem that provides utility and ongoing rewards and benefits to its users
 * A new standard of transparency to bring a greater level of trust to the market
 * Unrivaled staking rewards 
-* A network with low fees that can decrease proportionally over time, and that produces value for users
+* A network with low fees that can decrease proportionally over time, and that produces benefits for users
 * A truly interoperable network
 * An inclusive and energy efficient network consensus algorithm including mobile staking to allow greater adoption of blockchain technology 
 

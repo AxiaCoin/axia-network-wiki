@@ -1,8 +1,8 @@
 ---
 id: Export-Key
 title: Exporting and Managing Keys
-sidebar_label: Manage Keys
-slug: ../Export-Key
+sidebar_label: Managing Keys
+slug: ../Exporting-Keys
 ---
 
 ### Introduction

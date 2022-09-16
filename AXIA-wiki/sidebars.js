@@ -5,7 +5,7 @@ module.exports = {
       label: "Introduction",
       items: [
         "general/AXIA-Overview",
-        "general/AXIA-TestNet",
+        "general/AXIA-Testnet",
         //"general/getting-started",
         //"general/claims",
         //"general/redenomination",

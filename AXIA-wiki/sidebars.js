@@ -5,7 +5,7 @@ module.exports = {
       label: "Introduction",
       items: [
         "general/AXIA-Overview",
-        "general/AXIA-TestNet",
+        "general/AXIA-Testnet",
         //"general/getting-started",
         //"general/claims",
         //"general/redenomination",
@@ -138,7 +138,7 @@ module.exports = {
         //"build/AXIA-Network-RPC",
         //"build/Transaction-Structure",
         //"build/Peer-Node-Setup",
-        "build/Nomination-Process",
+        // "build/Nomination-Process",
         //"build/build-node-management",
         //"learn/learn-implementers-guide",
 
@@ -175,14 +175,15 @@ module.exports = {
             "build/AXChain-API",
             "build/keystore",
             "build/HealthAPI",
-            "build/InfoAPI"
+            "build/InfoAPI",
+            "build/AxiaJS"
             //"build/AXscan-Account-Creation",
             //"build/AXscan-Balance-Transfer",
 
           ],
 
         },
-        "build/AXwallet",
+        // "build/AXwallet",
         "build/Metamask-Support",
         "build/Deploy-SmartContract",
         "build/ERC20-AXIA"

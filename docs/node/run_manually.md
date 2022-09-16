@@ -1,19 +1,19 @@
 ---
 id: run_manually
 title: AXIA Network Node
-sidebar_label: AXIA Network Node
+sidebar_label: AXIA Network Nodes
 slug: ../run_manually
 ---
 
 ## Installation
 
 In this tutorial, we will:
-- Install AXgo, the GoLang implementation of the AXIA node,
-- Connect to the main AXIA network.
+- Install AXgo, the GoLang implementation of the AXIA node
+- Connect to the main AXIA Network
 
 ### Download AXgo
 
-Axia is an incredibly lightweight protocol, so the minimum computer requirements are quite modest.
+AXIA is an incredibly lightweight protocol, so the minimum computer requirements are quite modest.
 Note that as network usage increases, hardware requirements may change.
 
 The minimum recommended hardware specification for nodes connected to Mainnet is:
@@ -22,7 +22,7 @@ The minimum recommended hardware specification for nodes connected to Mainnet is
 - RAM: 16 GiB
 - Storage: 512 GiB
 - OS: Ubuntu 18.04/20.04 or macOS >= 10.15 (Catalina)
-- Network: Reliable IPv4 or IPv6 network connection, with an open public port.
+- Network: Reliable IPv4 or IPv6 network connection, with an open public port
 
 If you plan to build AXgo from source, you will also need the following software:
 
@@ -32,7 +32,7 @@ If you plan to build AXgo from source, you will also need the following software
 
 ### Source Code Install
 
-First install Go 1.18.1 or later. Follow the instructions  [here](https://golang.org/doc/install). You can verify by runing  `go version`.
+First install Go 1.18.1 or later. Follow the instructions  [here](https://golang.org/doc/install). You can verify by running  `go version`.
 
 Set  `$GOPATH`  environment variable properly for Go to look for Go Workspaces. Please read  [this](https://go.dev/doc/gopath_code)  for details. You can verify by running  `echo $GOPATH`.
 
@@ -47,7 +47,7 @@ cd axia-network-v2
 ```
 
 
-Build axgo:
+Build AXgo:
 
 ```
 ./scripts/build.sh
@@ -76,9 +76,9 @@ For Linux on RaspberryPi4 or similar Arm64-based computers: Download:  `axgo-lin
 
 ### Docker Install
 
-Make sure docker is installed on the machine - so commands like `docker run` etc. are available.
+Make sure docker is installed on the machine so that commands like `docker run` etc. are available.
 
-Building the docker image of latest axgo branch can be done by running:
+Building the docker image of latest AXgo branch can be done by running:
 
 ```sh
 ./scripts/build_image.sh
@@ -110,7 +110,7 @@ You should see some log messages.
 
 You can use `Ctrl+C` to kill the node.
 
-### Connecting to Test
+### Connecting to Testnet
 
 To connect to the Test Testnet, run:
 

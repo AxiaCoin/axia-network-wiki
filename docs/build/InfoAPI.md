@@ -22,7 +22,7 @@ This API uses the json 2.0 RPC format.s
 
 ### info.getBlockchainID
 
-Given a blockchain’s alias, get its ID.
+Give a blockchain’s alias and get its ID.
 
 #### **Signature**
 
@@ -278,7 +278,7 @@ curl -X POST --data '{
 
 ### info.isBootstrapped
 
-Check whether a given chain is done bootstrapping
+Check whether a given chain is done bootstrapping.
 
 #### **Signature**
 
@@ -343,8 +343,8 @@ info.peers({
 - **publicIP** is the public IP of the peer.
 - **nodeID** is the prefixed Node ID of the peer.
 - **version** shows which version the peer runs on.
-- **lastSent** is the timestamp of last message sent to the peer.
-- **lastReceived** is the timestamp of last message received from the peer.
+- **lastSent** is the timestamp of the last message sent to the peer.
+- **lastReceived** is the timestamp of the last message received from the peer.
 - **benched** shows chain IDs that the peer is being benched.
 - **observedUptime** is the uptime of this node observed by the peer.
 
@@ -488,4 +488,4 @@ curl -X POST --data '{
 }
 ```
 
- [AXIA Support](https://discord.gg/axianetwork) - Connect with our community of experts to learn or ask.
+ [AXIA Support](https://discord.gg/axianetwork) - Connect with our community of experts to learn or ask questions.

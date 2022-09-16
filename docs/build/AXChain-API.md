@@ -1,11 +1,12 @@
 ---
 sidebar_position: 4
+sidebar_label: AXChain API
 ---
 
-# AX Chain API
+# AXChain APIs
 
 :::info
-Ethereum has its own notion of **networkID** and **chainID**. These have no relationship to AXIA’s view of networkID and chainID and are purely internal to the AX Chain. On Mainnet, the AX Chain uses **1** and **4001** for these values. On the Testnet, it uses **1** and **4000** for these values. **networkID** and **chainID** can also be obtained using the **net_version** and **eth_chainId** methods.
+Ethereum has its own notion of **networkID** and **chainID**. These have no relationship to the view of networkID and chainID developed by AXIA, which are purely internal to the AXChain. On the AXIA Network Mainnet, the AXChain uses **1** and **4001** for these values. On the Testnet, it uses **1** and **4000** for these values. **networkID** and **chainID** can also be obtained using the **net_version** and **eth_chainId** methods.
 
 :::
 
@@ -16,7 +17,7 @@ Ethereum has its own notion of **networkID** and **chainID**. These have no rela
 
 #### JSON-RPC Endpoints
 
-To interact with AX Chain via the JSON-RPC endpoint:
+To interact with AXChain via the JSON-RPC endpoint:
 
 ```
 /ext/bc/AX/rpc
@@ -35,14 +36,14 @@ AXIA offers an API interface identical to Geth's API except that it only support
 - `eth_`
 - `personal_`
 - `txpool_`
-- `debug_` (note: this is turned off on the public api node.)
+- `debug_` (note: this is turned off on the public API node.)
 
 You can interact with these services the same exact way you’d interact with Geth. See the [Ethereum Wiki’s JSON-RPC Documentation](https://eth.wiki/json-rpc/API) and [Geth’s JSON-RPC Documentation](https://geth.ethereum.org/docs/rpc/server) for a full description of this API.
 
 
 #### eth_getAssetBalance
 
-In addition to the standard Ethereum APIs, AXIA offers **eth_getAssetBalance** to retrieve the balance of first class AXIA Native Tokens on the AX Chain (excluding AXC, which must be fetched with **eth_getBalance**).
+In addition to the standard Ethereum APIs, AXIA offers **eth_getAssetBalance** to retrieve the balance of first class AXIA Native Tokens on the AXChain (excluding AXIA Coin, which must be fetched with **eth_getBalance**).
 
 **Signature**
 
@@ -56,7 +57,7 @@ eth_getAssetBalance({
 
 - `address` owner of the asset
 - `blk` is the block number or hash at which to retrieve the balance
-- `assetID` id of the asset for which the balance is requested
+- `assetID` ID of the asset for which the balance is requested
 
 **Example Call**
 
@@ -153,7 +154,7 @@ curl -X POST --data '{
 
 ### Endpoints
 
-To interact with the `axc` specific RPC calls on the AX Chain:
+To interact with the `axc` specific RPC calls on the AXChain:
 
 ```
 /ext/bc/AX/axc
@@ -222,7 +223,7 @@ curl -X POST --data '{
 Not recommended for use on Mainnet. See warning notice in [Keystore API](./keystore).
 :::
 
-Export an asset from the AX Chain to Swap-Chain or Core-Chain. After calling this method, you must call the Swap-Chain's [`avm.import`](x-chain.md#avmimport) or Core-Chain's [`platform.import`](p-chain.md#platformimportaxc).
+Export an asset from the AXChain to SwapChain or CoreChain. After calling this method, you must call the SwapChain's [`avm.import`](x-chain.md#avmimport) or CoreChain's [`platform.import`](p-chain.md#platformimportaxc).
 
 #### Signature
 
@@ -237,11 +238,11 @@ axc.export({
 }) -> {txID: string}
 ```
 
-- `to` is the Swap-Chain or Core-Chain address the asset is sent to.
-- `amount` is the amount of the asset to send.
-- `assetID` is the ID of the asset. To export AXC use `"AXC"` as the `assetID`.
+- `to` is the SwapChain or CoreChain address the asset is sent to.
+- `amount` is the amount of the asset to be sent.
+- `assetID` is the ID of the asset. To export AXIA Coin use `"AXC"` as the `assetID`.
 - `baseFee` is the base fee that should be used when creating the transaction. If ommitted, a suggested fee will be used.
-- `username` is the user that controls the address that transaction will be sent from.
+- `username` is the user that controls the address that the transaction will be sent from.
 - `password` is `username`‘s password.
 
 #### Example Call
@@ -281,7 +282,7 @@ Not recommended for use on Mainnet. See warning notice in [Keystore API](./keyst
 
 **DEPRECATED—instead use** [**axc.export**](c-chain.md#axcexport).
 
-Send AXC from the AX Chain to Swap-Chain or Core-Chain. After calling this method, you must call the Swap-Chain's [`avm.import`](x-chain.md#avmimport) or Core-Chain's [`platform.import`](p-chain.md#platformimportaxc) with assetID `AXC` on the Swap-Chain to complete the transfer.
+Send AXIA Coin from the AXChain to the SwapChain or CoreChain. After calling this method, you must call the SwapChain's [`avm.import`](x-chain.md#avmimport) or CoreChain's [`platform.import`](p-chain.md#platformimportaxc) with assetID `AXC` on the SwapChain to complete the transfer.
 
 #### Signature
 
@@ -297,10 +298,10 @@ axc.exportAXC({
 
 **Request**
 
-- `to` is Swap-Chain or Core-Chain address the asset is sent to.
+- `to` is the SwapChain or CoreChain address the asset is sent to.
 - `amount` is the amount of the asset to send.
 - `baseFee` is the base fee that should be used when creating the transaction. If ommitted, a suggested fee will be used.
-- `username` is the user that controls the address that transaction will be sent from.
+- `username` is the user that controls the address that the transaction will be sent from.
 - `password` is `username`‘s password.
 
 **Response**
@@ -358,12 +359,12 @@ axc.exportKey({
 **Request**
 
 - `username` must control `address`.
-- `address` is the address for which you want to export the corresponding private key. It should be in hex format.
+- `address` is the address that you want to export the corresponding private key to. It should be in hex format.
 
 **Response**
 
 - `privateKey` is the CB58 endcoded string representation of the private key that controls `address`. It has a `PrivateKey-` prefix and can be used to import a key via `axc.importKey`.
-- `privateKeyHex` is the hex string representation of the private key that controls `address`. It can be used to import an account into Metamask.
+- `privateKeyHex` is the hex string representation of the private key that controls `address`. It can be used to import an account into MetaMask.
 
 #### Example Call
 
@@ -425,7 +426,7 @@ axc.getUTXOs(
 - `utxos` is a list of UTXOs such that each UTXO references at least one address in `addresses`.
 - At most `limit` UTXOs are returned. If `limit` is omitted or greater than 1024, it is set to 1024.
 - This method supports pagination. `endIndex` denotes the last UTXO returned. To get the next set of UTXOs, use the value of `endIndex` as `startIndex` in the next call.
-- If `startIndex` is omitted, will fetch all UTXOs up to `limit`.
+- If `startIndex` is omitted, it will fetch all UTXOs up to `limit`.
 - When using pagination (ie when `startIndex` is provided), UTXOs are not guaranteed to be unique across multiple calls. That is, a UTXO may appear in the result of the first call, and then again in the second call.
 - When using pagination, consistency is not guaranteed across multiple calls. That is, the UTXO set of the addresses may have changed between calls.
 - `encoding` sets the format for the returned UTXOs. Can only be `hex` when a value is provided.
@@ -451,7 +452,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' http://127.0.0.1:9650/ext/bc/AX/axc
 ```
 
-This gives response:
+This gives the response:
 
 ```json
 {
@@ -493,10 +494,10 @@ axc.import({
 
 **Request**
 
-- `to` is the address the asset is sent to. This must be the same as the `to` argument in the corresponding call to the Swap-Chain's or Core-Chain's `export`.
-- `sourceChain` is the ID or alias of the chain the asset is being imported from, `"Swap"` or `"AX"` or `"Core"`.
+- `to` is the address the asset is sent to. This must be the same as the `to` argument in the corresponding call to the SwapChain's or CoreChain's `export`.
+- `sourceChain` is the ID or alias of the chain the asset is being imported from: `"Swap"` or `"AX"` or `"Core"`.
 - `baseFee` is the base fee that should be used when creating the transaction. If omitted, a suggested fee will be used.
-- `username` is the user that controls the address that transaction will be sent from.
+- `username` is the user that controls the address that the transaction will be sent from.
 - `password` is `username`‘s password.
 
 **Response**
@@ -557,7 +558,7 @@ axc.importAXC({
 - `to` is the address the AXC is sent to. It should be in hex format.
 - `sourceChain` is the ID or alias of the chain the AXC is being imported from. `"Swap"` or `"AX"` or `"Core"`.
 - `baseFee` is the base fee that should be used when creating the transaction. If omitted, a suggested fee will be used.
-- `username` is the user that controls the address that transaction will be sent from.
+- `username` is the user that controls the address that the transaction will be sent from.
 - `password` is `username`‘s password.
 
 **Response**
@@ -616,7 +617,7 @@ axc.importKey({
 
 **Response**
 
-- `address` is the address `username` now controls with the private key. It will be in hex format.
+- `address` is the address that `username` now controls with the private key. It will be in hex format.
 
 #### Example Call
 

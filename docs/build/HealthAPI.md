@@ -44,7 +44,7 @@ health.health() -> {
 }
 ```
 
-**healthy** is true if the node if all health checks are passing.
+**healthy** is true if all node health checks are passing.
 
 **checks** is a list of health check responses.
 
@@ -68,7 +68,7 @@ curl -X POST --data '{
 
 ### **Example Response**
 
-In this example response, the AX Chain’s health check is failing.
+In this example response, the AXChain’s health check is failing.
 
 ```
 {
@@ -122,4 +122,4 @@ In this example response, the AX Chain’s health check is failing.
 }
 ```
 
- [AXIA Support](https://discord.gg/axianetwork) - Connect with our community of experts to learn or ask.
+ [AXIA Support](https://discord.gg/axianetwork) - Connect with our community of experts to learn or ask questions.

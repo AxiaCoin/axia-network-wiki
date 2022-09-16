@@ -18,7 +18,7 @@ Note that each chain has its own wallet address and format. The SwapChain wallet
 
 To transfer tokens to and from your AXIA Web Wallet, you should select the corresponding chain address. For example, MetaMask wallets are only compatible with the AXChain. Be careful and make sure to double-check the addresses before making transactions. Funds can be lost and permanently irretrievable if you send them to an incompatible network.
 
-### Know More About The AXIA Web Wallet:
+### More info on the AXIA Web Wallet:
 
 | Title                                              | Description                                                                                                                                         |
 | :------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------- |

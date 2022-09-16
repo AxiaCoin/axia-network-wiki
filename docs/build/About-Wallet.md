@@ -1,7 +1,7 @@
 ---
 id: About-Wallet
 title: AXIA Web Wallet
-sidebar_label: About Wallet
+sidebar_label: About
 slug: ../About-Wallet
 ---
 

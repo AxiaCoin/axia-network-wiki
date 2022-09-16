@@ -52,7 +52,7 @@ module.exports = {
       {
         docs: {
           editUrl: ({ docPath }) =>
-            `https://github.com/AxiaCoin/axia-network-wiki/edit/uat/docs/${docPath}`,
+            `https://github.com/AxiaCoin/axia-network-wiki/edit/prod/docs/${docPath}`,
           path: "../docs",
           showLastUpdateAuthor: false,
           showLastUpdateTime: false,

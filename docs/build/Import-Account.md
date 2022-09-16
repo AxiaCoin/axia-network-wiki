@@ -13,7 +13,7 @@ Then select the network (Testnet/Mainnet) from the top right corner.
 
 ![pjs-01](../assets/webWallet/w2.png)
 
-After you select the 'Access Wallet' section, it will take you to another wizard where you can see options to import your previous wallet:
+After you select the 'Access Wallet' section, it will take you to another menu from which you can see options to import your previous wallet:
 
 ![pjs-01](../assets/webWallet/w3.png)
 

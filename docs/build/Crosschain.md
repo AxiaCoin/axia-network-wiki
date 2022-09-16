@@ -1,7 +1,7 @@
 ---
 id: Crosschain
-title: What is Cross Chain Transfer?
-sidebar_label: Cross Chain Transfer
+title: Cross-Chain Transfer
+sidebar_label: Cross-Chain Transfer
 slug: ../Crosschain
 ---
 

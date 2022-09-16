@@ -1,8 +1,8 @@
 ---
 id: Balance-Transfer
 title: AXIA Web Wallet Balance Transfers
-sidebar_label: Balance Transfer
-slug: ../Balance-Transfer
+sidebar_label: Balance Transfers
+slug: ../Balance-Transfers
 ---
 ## Introduction
 Transferring funds is always an important function for any wallet. It is very simple and secure to transfer AXIA Coin from one AXIA Web Wallet to another. In this guide we will share information on how to easily and safely do so.

@@ -80,7 +80,6 @@ module.exports = {
             "learn/AXIA-Applications",
             "learn/AXIA-Staking",
             "learn/Transaction-Fees",
-            "node/run_manually",
             //"learn/learn-cross-consensus",
             //"learn/Coin-Supply-and-Management",
             //"learn/TransactionFees",
@@ -101,6 +100,13 @@ module.exports = {
             //"learn/learn-simple-payouts",]}
           ],
         },
+        {
+          type: "category",
+          label: "AXIA Network Node",
+          items:[            
+            "node/run_manually",
+            "node/run_aws",
+  ]},
         {
           type: "category",
           label: "Cryptography",

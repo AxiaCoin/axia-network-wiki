@@ -1,7 +1,7 @@
 ---
 id: run_manually
-title: AXIA Network Node
-sidebar_label: AXIA Network Nodes
+title: Run AXIA Network Node Manually
+sidebar_label: Run AXIA Network Node Manually
 slug: ../run_manually
 ---
 

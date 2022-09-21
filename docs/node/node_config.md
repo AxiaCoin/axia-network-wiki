@@ -1,11 +1,11 @@
 ---
 id: node_config
-title: AxiaGo Config and Flags
-sidebar_label: AxiaGo Config and Flags
+title: AX Config and Flags
+sidebar_label: AXgo Config and Flags
 slug: ../node_config
 ---
 
-# AxiaGo Config and Flags
+# AXgo Config and Flags
 
 You can specify the configuration of a node with the arguments below.
 
@@ -110,7 +110,7 @@ State sync IPs is a comma-separated list of IPv4:port pairs. These IP Addresses 
 
 ## Chain Configs
 
-Some blockchains allow the node operator to provide custom configurations. These custom configurations are broken down into two categories: network upgrades and optional chain configurations. AxiaGo reads in these configurations from the chain configuration directory and passes them into the VM on initialization.
+Some blockchains allow the node operator to provide custom configurations. These custom configurations are broken down into two categories: network upgrades and optional chain configurations. AXgo reads in these configurations from the chain configuration directory and passes them into the VM on initialization.
 
 :::note
 Please replace `chain-config-dir` and `blockchainID` with actual value.
@@ -124,7 +124,7 @@ The chain configs are passed in from the location `chain-config-dir`/`blockchain
 
 #### `--chain-config-dir` (string):
 
-Defaults to `$HOME/.axgo/configs/chains`. If this flag is not provided and the default directory does not exist, AxiaGo will not exit since custom configs are optional. However, if the flag is set, the specified folder must exist, or AxiaGo will exit with an error. This flag is ignored if `--chain-config-content` is specified.
+Defaults to `$HOME/.axgo/configs/chains`. If this flag is not provided and the default directory does not exist, AXgo will not exit since custom configs are optional. However, if the flag is set, the specified folder must exist, or AXgo will exit with an error. This flag is ignored if `--chain-config-content` is specified.
 
 #### `--chain-config-content` (string):
 
@@ -142,7 +142,7 @@ Specifies the type of database to use. Must be one of `leveldb`, `rocksdb`, `mem
 
 Note that when running with `leveldb`, the node can't read data that was persisted when running with `rocksdb`, and vice-versa.
 
-**Two important notes about RocksDB**: First, RocksDB does not work on all computers. Second, RocksDB is not built by default and is not included in publicly released binaries. To build AxiaGo with RocksDB, run `export ROCKSDBALLOWED=1` in your terminal and then `scripts/build.sh`. You must do this before you can use `--db-type=rocksdb`.
+**Two important notes about RocksDB**: First, RocksDB does not work on all computers. Second, RocksDB is not built by default and is not included in publicly released binaries. To build AXgo with RocksDB, run `export ROCKSDBALLOWED=1` in your terminal and then `scripts/build.sh`. You must do this before you can use `--db-type=rocksdb`.
 
 ### Database Config
 
@@ -385,13 +385,13 @@ Comma separated list of Subnet IDs that this node would validate if added to. De
 
 ### Subnet Configs
 
-It is possible to provide parameters for Subnets. Parameters here apply to all chains in the specified Subnets. Parameters must be specified with a `{subnetID}.json` config file under `--subnet-config-dir`. AxiaGo loads configs for Subnets specified in [`--whitelisted-subnet` parameter](#whitelisted-subnets-string).
+It is possible to provide parameters for Subnets. Parameters here apply to all chains in the specified Subnets. Parameters must be specified with a `{subnetID}.json` config file under `--subnet-config-dir`. AXgo loads configs for Subnets specified in [`--whitelisted-subnet` parameter](#whitelisted-subnets-string).
 
 Full reference for all configuration options for a Subnet can be found in a separate [Subnet Configs](./subnet-configs) document.
 
 #### `--subnet-config-dir` (string):
 
-Specifies the directory that contains Subnet configs, as described above. Defaults to `$HOME/.axgo/configs/subnets`. If the flag is set explicitly, the specified folder must exist, or AxiaGo will exit with an error. This flag is ignored if `--subnet-config-content` is specified.
+Specifies the directory that contains Subnet configs, as described above. Defaults to `$HOME/.axgo/configs/subnets`. If the flag is set explicitly, the specified folder must exist, or AXgo will exit with an error. This flag is ignored if `--subnet-config-content` is specified.
 
 Example: Let's say we have a Subnet with ID `p4jUwqZsA2LuSftroCd3zb4ytH8W99oXKuKVZdsty7eQ3rXD6`. We can create a config file under the default `subnet-config-dir` at `$HOME/.axgo/configs/subnets/p4jUwqZsA2LuSftroCd3zb4ytH8W99oXKuKVZdsty7eQ3rXD6.json`. An example config file is:
 
@@ -482,11 +482,11 @@ Minimum amount of time queries to a peer must be failing before the peer is benc
 
 #### `--build-dir` (string):
 
-Specifies where to find AxiaGo & plugin binaries. Defaults to the path of executed AxiaGo binary. The structure of this directory must be as follows:
+Specifies where to find AXgo & plugin binaries. Defaults to the path of executed AXgo binary. The structure of this directory must be as follows:
 
 ```text
 build-dir
-|_axgo (note: this is the AxiaGo binary, not a directory)
+|_axgo (note: this is the AXgo binary, not a directory)
 |_plugins
   |_evm
 ```
@@ -738,7 +738,7 @@ Timeout while dialing a peer.
 
 ### Message Rate-Limiting
 
-These flags govern rate-limiting of inbound and outbound messages. For more information on rate-limiting and the flags below, see package `throttling` in AxiaGo.
+These flags govern rate-limiting of inbound and outbound messages. For more information on rate-limiting and the flags below, see package `throttling` in AXgo.
 
 #### CPU based
 

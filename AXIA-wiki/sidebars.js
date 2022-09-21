@@ -106,6 +106,7 @@ module.exports = {
           items:[            
             "node/run_manually",
             "node/run_aws",
+            "node/node_config"
   ]},
         {
           type: "category",

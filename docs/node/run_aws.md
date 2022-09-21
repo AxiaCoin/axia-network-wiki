@@ -152,7 +152,7 @@ Go back to the EC2 Dashboard and select  `Running Instances`.
 
 Select the newly created EC2 instance. This opens a details panel with information about the instance.
 
-![Details about your new instance.](https://miro.medium.com/max/1125/1*3DNT5ecS-Dbf33I_gxKMlg.png)
+![Details about your new instance.](../assets/node/aws_instance.png)
 
 Copy the  `IPv4 Public IP`  field to use later. From now on we call this value  `PUBLICIP`.
 
@@ -178,13 +178,10 @@ SSH into the instance. (Remember to replace  `PUBLICIP`  with the public IP fiel
 ssh ubuntu@PUBLICIP
 ```
 
-If the permissions are  **not**  set correctly, you will see the following error.
-
-![Make sure you set the permissions correctly.](https://miro.medium.com/max/1065/1*Lfp8o3DTsGfoy2HOOLw3pg.png)
 
 You are now logged into the EC2 instance.
 
-![You're on the EC2 instance.](https://miro.medium.com/max/1030/1*XNdOvUznKbuuMF5pMf186w.png)
+![You're on the EC2 instance.](../assets/node/aws_ssh.png)
 
 If you have not already done so, update the instance to make sure it has the latest operating system and security updates:
 
@@ -230,8 +227,6 @@ In the above example the node ID is`NodeID-DznHmm3o7RkmpLkWMn9NqafH66mqunXbM`. C
 
 AXgo has other APIs, such as the  [Health API](./build/HealthAPI), that may be used to interact with the node. Some APIs are disabled by default. To enable such APIs, modify the ExecStart section of  `/etc/systemd/system/axgo.service`  (created during the installation process) to include flags that enable these endpoints. Don't manually enable any APIs unless you have a reason to.
 
-![Some APIs are disabled by default.](https://miro.medium.com/max/881/1*Vm-Uh2yV0pDCVn8zqFw64A.png)
-
 Back up the node's staking key and certificate in case the EC2 instance is corrupted or otherwise unavailable. The node's ID is derived from its staking key and certificate. If you lose your staking key or certificate then your node will get a new node ID, which could cause you to become ineligible for a staking reward if your node is a validator.  **It is very strongly advised that you copy your node's staking key and certificate**. The first time you run a node, it will generate a new staking key/certificate pair and store them in directory  `/home/ubuntu/.axgo/staking`.
 
 Exit out of the SSH instance by running:
@@ -250,15 +245,6 @@ scp -r ubuntu@PUBLICIP:/home/ubuntu/.axgo/staking ~/aws_axia_backup
 
 Now your staking key and certificate are in directory  `~/aws_axia_backup`  .  **The contents of this directory are secret.**  You should hold this directory on storage not connected to the internet (like an external hard drive.)
 
-### Upgrading Your Node
-
-AXgo is an ongoing project and there are regular version upgrades. Most upgrades are recommended but not required. Advance notice will be given for upgrades that are not backwards compatible. To update your node to the latest version, SSH into your AWS instance as before and run the installer script again.
-
-```
-./axgo-installer.sh
-```
-
-Your machine is now running the newest AXgo version. To see the status of the AXgo service, run  `sudo systemctl status axgo.`
 
 ## Increase Volume Size
 

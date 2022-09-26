@@ -190,8 +190,8 @@ module.exports = {
                 "build/AxiaJS",
                 "build/AxiaJS-example-scripts",
                 "build/AxiaJS-manage-swap-keys",
-                "build/AxiaJS-create-an-asset",
-                "build/AxiaJS-send-an-asset"
+                // "build/AxiaJS-create-an-asset",
+                // "build/AxiaJS-send-an-asset"
               ],
             },
             //"build/AXscan-Account-Creation",

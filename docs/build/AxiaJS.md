@@ -1,7 +1,7 @@
 ---
 id: AxiaJS
-title: AxiaJS
-sidebar_label: AxiaJS
+title: Overview
+sidebar_label: Overview
 slug: ../AxiaJS
 ---
 

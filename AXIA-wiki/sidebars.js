@@ -183,7 +183,17 @@ module.exports = {
             "build/keystore",
             "build/HealthAPI",
             "build/InfoAPI",
-            "build/AxiaJS"
+            {
+              type: "category",
+              label: "AxiaJS",
+              items: [
+                "build/AxiaJS",
+                "build/AxiaJS-example-scripts",
+                "build/AxiaJS-manage-swap-keys",
+                "build/AxiaJS-create-an-asset",
+                "build/AxiaJS-send-an-asset"
+              ],
+            },
             //"build/AXscan-Account-Creation",
             //"build/AXscan-Balance-Transfer",
 

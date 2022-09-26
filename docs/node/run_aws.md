@@ -1,0 +1,254 @@
+---
+id: run_aws
+title: Run AXIA Network Node with AWS
+sidebar_label: Run AXIA Network Node with AWS
+slug: ../run_aws
+---
+
+
+## Introduction
+
+This tutorial will guide you through setting up an AXIA node on  [Amazon Web Services (AWS)](https://aws.amazon.com/). Cloud services like AWS are a good way to ensure that your node is highly secure, available, and accessible.
+
+To get started, you'll need:
+
+-   An AWS account
+-   A terminal with which to SSH into your AWS machine
+-   A place to securely store and back up files
+
+This tutorial assumes your local machine has a Unix style terminal. If you're on Windows, you'll have to adapt some of the commands used here.
+
+## Log Into AWS
+
+Signing up for AWS is outside the scope of this article, but Amazon has instructions  [here](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account).
+
+It is  _highly_  recommended that you set up Multi-Factor Authentication on your AWS root user account to protect it. Amazon has documentation for this  [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-root).
+
+Once your account is set up, you should create a new EC2 instance. An EC2 is a virtual machine instance in AWS's cloud. Go to the  [AWS Management Console](https://console.aws.amazon.com/)  and enter the EC2 dashboard.
+
+![AWS Management Console.png](https://docs.avax.network/assets/images/image(35)-6ae235b2dea3f67c195006ad23bfe6cf.png)
+
+To log into the EC2 instance, you will need a key on your local machine that grants access to the instance. First, create that key so that it can be assigned to the EC2 instance later on. On the bar on the left side, under  **Network & Security**, select  **Key Pairs.**
+
+![Select &quot;Key Pairs&quot; under the &quot;Network &amp; Security&quot; drop-down.](https://docs.avax.network/assets/images/image(38)-79b12d561c69e6906aa93d5e3f547dad.png)
+
+Select  **Create key pair**  to launch the key pair creation wizard.
+
+![Select "Create key pair."](https://miro.medium.com/max/847/1*UZ4L0DGUogCfBq-TZ5U3Kw.png)
+
+Name your key  `axia`. If your local machine has MacOS or Linux, select the  `pem`  file format. If it's Windows, use the  `ppk`  file format. Optionally, you can add tags for the key pair to assist with tracking.
+
+![Create a key pair that will later be assigned to your EC2 instance.](../assets/node/create_key_pair.png)
+
+Click  `Create key pair`. You should see a success message, and the key file should be downloaded to your local machine. Without this file, you will not be able to access your EC2 instance.  **Make a copy of this file and put it on a separate storage medium such as an external hard drive. Keep this file secret; do not share it with others.**
+
+![Success message after creating a key pair.](../assets/node/key_pair_created_successfully.png)
+
+## Create a Security Group
+
+An AWS Security Group defines what internet traffic can enter and leave your EC2 instance. Think of it like a firewall. Create a new Security Group by selecting  **Security Groups**  under the  **Network & Security**  drop-down.
+
+![Select "Security Groups" underneath "Network & Security."](https://miro.medium.com/max/214/1*pFOMpS0HhzcAYbl_VfyWlA.png)
+
+This opens the Security Groups panel. Click  **Create security group**  in the top right of the Security Groups panel.
+
+![Select "Create security group."](https://miro.medium.com/max/772/1*B0JSYoMBplAtCz2Yb2e1sA.png)
+
+You'll need to specify what inbound traffic is allowed. Allow SSH traffic from your IP address so that you can log into your EC2 instance. (Each time your ISP changes your IP address, you will need to modify this rule. If your ISP changes regularly, you may allow SSH traffic from anywhere to avoid having to modify this rule frequently.) Allow TCP traffic on port 9651 so your node can communicate with other nodes on the network. Allow TCP traffic on port 9650 from your IP so you can make API calls to your node.  **It's important that you only allow traffic on this port from your IP.**  If you allow incoming traffic from anywhere, this could be used as an denial of service attack vector. Finally, allow all outbound traffic.
+
+![Your inbound and outbound rules should look like this.](https://docs.avax.network/assets/images/inbound-rules-6dd33c1a9fb06e27f8acfefc206809df.png)
+
+Add a tag to the new security group with key  `Name`  and value`AXIA Security Group`. This will enable us to know what this security group is when we see it in the list of security groups.
+
+![Tag the security group so you can identify it later.](../assets/node/axia_security_group_tag.png)
+
+Click  `Create security group`. You should see the new security group in the list of security groups.
+
+## Launch an EC2 Instance
+
+Now you're ready to launch an EC2 instance. Go to the EC2 Dashboard and select  **Launch instance**.
+
+![Select "Launch Instance."](https://miro.medium.com/max/813/1*zsawPDMBFlonC_7kg060wQ.png)
+
+Select  **Ubuntu 20.04 LTS (HVM), SSD Volume Type**  for the operating system.
+
+![Select Ubuntu 20.04 LTS.](https://docs.avax.network/assets/images/Ubuntu-20.04-LTS-006b3edff4acfbe93d0b44115f95882b.png)
+
+Next, choose your instance type. This defines the hardware specifications of the cloud instance. In this tutorial we set up a  **c5.2xlarge**. This should be more than powerful enough since AXIA is a lightweight consensus protocol. To create a c5.2xlarge instance, select the  **Compute-optimized**  option from the filter drop-down menu.
+
+![Filter by compute optimized.](https://miro.medium.com/max/595/1*tLVhk8BUXVShgm8XHOzmCQ.png)
+
+Select the checkbox next to the c5.2xlarge instance in the table.
+
+![Select c5.2xlarge.](https://docs.avax.network/assets/images/c5-2xlarge-0d74065b3a1806ce68ff4f29549f634b.png)
+
+Click the  **Next: Configure Instance Details**  button in the bottom right-hand corner.
+
+![](https://miro.medium.com/max/575/1*LdOFvctYF3HkFxmyNGDGSg.png)
+
+The instance details can stay as their defaults.
+
+### Optional: Using Reserved Instances
+
+By default, you will be charged hourly for running your EC2 instance. For a long term usage that is not optimal.
+
+You could save money by using a  **Reserved Instance**. With a reserved instance, you pay upfront for an entire year of EC2 usage, and receive a lower per-hour rate in exchange for locking in. If you intend to run a node for a long time and don't want to risk service interruptions, this is a good option to save money. Again, do your own research before selecting this option.
+
+### Add Storage, Tags, Security Group
+
+Click the  **Next: Add Storage**  button in the bottom right corner of the screen.
+
+You need to add space to your instance's disk. You should start with at least 700GB of disk space. Although upgrades to reduce disk usage are always in development, on average the database will continually grow, so you need to constantly monitor disk usage on the node and increase disk space if needed.
+
+Note that the image below shows 100GB as disk size, which was appropriate at the time the screenshot was taken. You should check the current  [recommended disk space size](https://github.com/AxiaCoin/axia-network-v2#installation)  before entering the actual value here.
+
+![Select disk size.](https://docs.avax.network/assets/images/add-storage-573f09dd7d7c4fc9c1f61dd84d353a65.png)
+
+Click  **Next: Add Tags**  in the bottom right corner of the screen to add tags to the instance. Tags enable us to associate metadata with our instance. Add a tag with key  `Name`  and value  `My AXIA Node`. This will make it clear what this instance is on your list of EC2 instances.
+
+![Add a tag with key "Name" and value "My AXIA Node."](../assets/node/add_tags.png)
+
+Now assign the security group created earlier to the instance. Choose  **Select an existing security group**  and choose the security group created earlier.
+
+![Choose the security group created earlier.](../assets/node/set_security_group.png)
+
+Finally, click  **Review and Launch**  in the bottom right. A review page will show the details of the instance you're about to launch. Review those, and if all looks good, click the blue  **Launch**  button in the bottom right corner of the screen.
+
+You'll be asked to select a key pair for this instance. Select  **Choose an existing key pair**  and then select the  `axia`  key pair you made earlier in the tutorial. Check the box acknowledging that you have access to the  `.pem`  or  `.ppk`  file created earlier (make sure you've backed it up!) and then click  **Launch Instances**.
+
+![Use the key pair created earlier.](../assets/node/set_key_pair.png)
+
+You should see a new pop up that confirms the instance is launching!
+
+![Your instance is launching!](https://miro.medium.com/max/727/1*QEmh9Kpn1RbHmoKLHRpTPQ.png)
+
+### Assign an Elastic IP
+
+By default, your instance will not have a fixed IP. Let's give it a fixed IP through AWS's Elastic IP service. Go back to the EC2 dashboard. Under  **Network & Security,**  select  **Elastic IPs**.
+
+![Select "Elastic IPs" under "Network & Security."](https://miro.medium.com/max/192/1*BGm6pR_LV9QnZxoWJ7TgJw.png)
+
+Select  **Allocate Elastic IP address**.
+
+![Select "Allocate Elastic IP address."](https://miro.medium.com/max/503/1*pjDWA9ybZBKnEr1JTg_Mmw.png)
+
+Select the region your instance is running in, and choose to use Amazon’s pool of IPv4 addresses. Click  **Allocate**.
+
+![Settings for the Elastic IP.](https://miro.medium.com/max/840/1*hL5TtBcD_kR71OGYLQnyBg.png)
+
+Select the Elastic IP you just created from the Elastic IP manager. From the  **Actions**  drop-down, choose  **Associate Elastic IP address**.
+
+![Under "Actions", select "Associate Elastic IP address."](https://miro.medium.com/max/490/1*Mj6N7CllYVJDl_-zcCl-gw.png)
+
+Select the instance you just created. This will associate the new Elastic IP with the instance and give it a public IP address that won't change.
+
+![Assign the Elastic IP to your EC2 instance.](https://miro.medium.com/max/834/1*NW-S4LzL3EC1q2_4AkIPUg.png)
+
+## Set Up AXgo
+
+Go back to the EC2 Dashboard and select  `Running Instances`.
+
+![Go to your running instances.](https://miro.medium.com/max/672/1*CHJZQ7piTCl_nsuEAeWpDw.png)
+
+Select the newly created EC2 instance. This opens a details panel with information about the instance.
+
+![Details about your new instance.](../assets/node/aws_instance.png)
+
+Copy the  `IPv4 Public IP`  field to use later. From now on we call this value  `PUBLICIP`.
+
+**Remember: the terminal commands below assume you're running Linux. Commands may differ for MacOS or other operating systems. When copy-pasting a command from a code block, copy and paste the entirety of the text in the block.**
+
+Log into the AWS instance from your local machine. Open a terminal (try shortcut  `CTRL + ALT + T`) and navigate to the directory containing the  `.pem`  file you downloaded earlier.
+
+Move the  `.pem`  file to  `$HOME/.ssh`  (where  `.pem`  files generally live) with:
+
+```
+mv axia.pem ~/.ssh
+```
+
+Add it to the SSH agent so that we can use it to SSH into your EC2 instance, and mark it as read-only.
+
+```
+ssh-add ~/.ssh/axia.pem; chmod 400 ~/.ssh/axia.pem
+```
+
+SSH into the instance. (Remember to replace  `PUBLICIP`  with the public IP field from earlier.)
+
+```
+ssh ubuntu@PUBLICIP
+```
+
+
+You are now logged into the EC2 instance.
+
+![You're on the EC2 instance.](../assets/node/aws_ssh.png)
+
+If you have not already done so, update the instance to make sure it has the latest operating system and security updates:
+
+```
+sudo apt update; sudo apt upgrade -y; sudo reboot
+```
+
+This also reboots the instance. Wait 5 minutes, then log in again by running this command on your local machine:
+
+```
+ssh ubuntu@PUBLICIP
+```
+
+You're logged into the EC2 instance again. Now we’ll need to set up our AXIA node. To do this, follow the  [Run AXIA Network Node Manually](./run_manually)  tutorial which automates the installation process. You will need the  `PUBLICIP`  we set up earlier.
+
+Your AXgo node should now be running and in the process of bootstrapping, which can take a few hours. To check if it's done, you can issue an API call using  `curl`. If you're making the request from the EC2 instance, the request is:
+
+```
+curl -X POST --data '{    "jsonrpc":"2.0",    "id"     :1,    "method" :"info.isBootstrapped",    "params": {        "chain":"X"    }}' -H 'content-type:application/json;' 127.0.0.1:9650/ext/info
+```
+
+Once the node is finished bootstrapping, the response will be:
+
+```
+{    "jsonrpc": "2.0",    "result": {        "isBootstrapped": true    },    "id": 1}
+```
+
+You can continue on, even if AXgo isn't done bootstrapping.
+
+In order to make your node a validator, you'll need its node ID. To get it, run:
+
+```
+curl -X POST --data '{    "jsonrpc":"2.0",    "id"     :1,    "method" :"info.getNodeID"}' -H 'content-type:application/json;' 127.0.0.1:9650/ext/info
+```
+
+The response contains the node ID.
+
+```
+{"jsonrpc":"2.0","result":{"nodeID":"NodeID-DznHmm3o7RkmpLkWMn9NqafH66mqunXbM"},"id":1}
+```
+
+In the above example the node ID is`NodeID-DznHmm3o7RkmpLkWMn9NqafH66mqunXbM`. Copy your node ID for later. Your node ID is not a secret, so you can just paste it into a text editor.
+
+AXgo has other APIs, such as the  [Health API](./build/HealthAPI), that may be used to interact with the node. Some APIs are disabled by default. To enable such APIs, modify the ExecStart section of  `/etc/systemd/system/axgo.service`  (created during the installation process) to include flags that enable these endpoints. Don't manually enable any APIs unless you have a reason to.
+
+Back up the node's staking key and certificate in case the EC2 instance is corrupted or otherwise unavailable. The node's ID is derived from its staking key and certificate. If you lose your staking key or certificate then your node will get a new node ID, which could cause you to become ineligible for a staking reward if your node is a validator.  **It is very strongly advised that you copy your node's staking key and certificate**. The first time you run a node, it will generate a new staking key/certificate pair and store them in directory  `/home/ubuntu/.axgo/staking`.
+
+Exit out of the SSH instance by running:
+
+```
+exit
+```
+
+Now you're no longer connected to the EC2 instance; you're back on your local machine.
+
+To copy the staking key and certificate to your machine, run the following command. As always, replace  `PUBLICIP`.
+
+```
+scp -r ubuntu@PUBLICIP:/home/ubuntu/.axgo/staking ~/aws_axia_backup
+```
+
+Now your staking key and certificate are in directory  `~/aws_axia_backup`  .  **The contents of this directory are secret.**  You should hold this directory on storage not connected to the internet (like an external hard drive.)
+
+
+## Increase Volume Size
+
+If you need to increase the volume size, follow these instructions from AWS:
+
+-   [Request modifications to your EBS volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/requesting-ebs-volume-modifications.html)
+-   [Extend a Linux file system after resizing a volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html)

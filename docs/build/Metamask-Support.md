@@ -95,7 +95,7 @@ Here, you can add the network.
 
 To connect with the AXIA Network (Testnet) the parameters are:
 
-- Network Name - AXIA
+- Network Name - AXIA Testnet
 - RPC URL - https://rpc.testnet.axiacoin.network/ext/bc/AX/rpc
 - Chain ID - 4000
 - Currency Symbol - AXC
